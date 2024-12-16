@@ -311,7 +311,7 @@ namespace Pinterest.Controllers
             article.Categ = GetAllCategories();
 
             if ((article.UserId == _userManager.GetUserId(User)) ||
-                User.IsInRole("Admin"))
+                User.IsInRole("Admin") || User.IsInRole("Editor"))
             {
                 return View(article);
             }
@@ -336,7 +336,7 @@ namespace Pinterest.Controllers
             if (ModelState.IsValid)
             {
                 if ((article.UserId == _userManager.GetUserId(User))
-                    || User.IsInRole("Admin"))
+                    || User.IsInRole("Admin") || User.IsInRole("Editor"))
                 {
                     article.Title = requestArticle.Title;
 
@@ -412,6 +412,7 @@ namespace Pinterest.Controllers
             ViewBag.UserCurent = _userManager.GetUserId(User);
 
             ViewBag.EsteAdmin = User.IsInRole("Admin");
+            ViewBag.EsteEditor = User.IsInRole("Editor");
         }
 
         [NonAction]
