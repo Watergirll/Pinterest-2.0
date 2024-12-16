@@ -1,0 +1,22 @@
+﻿@using System.Security.Claims
+@model Pinterest.Models.Article
+
+@if (User.Identity.IsAuthenticated)
+{
+    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    <form asp-action="Like" method="post" data-ajax="true" data-ajax-method="POST" data-ajax-update="#likeButtonContainer">
+        <input type="hidden" name="articleId" value="@Model.Id" />
+        <button type="submit" class="btn btn-primary">
+            @if (Model.Likes.Any(l => l.UserId == userId))
+            {
+                <span>Unlike</span>
+            }
+            else
+            {
+                <span>Like</span>
+            }
+        </button>
+    </form>
+
+    <p>Likes: @(Model.Likes?.Count() ?? 0)</p>
+}

@@ -1,0 +1,39 @@
+﻿@model Pinterest.Models.Article
+
+<div class="card-body">
+
+    <!-- Titlul articolului -->
+    <h3 class="card-title bg-primary text-white py-3 rounded-2 text-center shadow-sm">@Model.Title</h3>
+
+    <!-- Conținutul articolului -->
+    <div class="card-text mt-4 mb-4 text-muted">
+        @Html.Raw(Model.Content)
+    </div>
+
+    <!-- Atributele articolului într-o structură elegantă -->
+    <div class="d-flex justify-content-center gap-3 flex-wrap mt-3">
+        <!-- Categorie -->
+        <div class="attribute-box shadow-sm">
+            <i class="bi bi-globe mb-2 d-block"></i>
+            <div class="attribute-title">Categorie</div>
+            <div class="attribute-content">@Model.Category.CategoryName</div>
+        </div>
+
+        <!-- Autor -->
+        <div class="attribute-box shadow-sm">
+            <i class="bi bi-person mb-2 d-block"></i>
+            <div class="attribute-title">Autor</div>
+            <div class="attribute-content">@Html.DisplayFor(model => model.User.UserName)</div>
+        </div>
+
+
+        <!-- Dată -->
+        <div class="attribute-box shadow-sm">
+            <i class="bi bi-calendar mb-2 d-block"></i>
+            <div class="attribute-title">Dată</div>
+            <div class="attribute-content">@Model.Date.ToString("dd MMM yyyy")</div>
+        </div>
+    </div>
+
+</div>
+

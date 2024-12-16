@@ -1,0 +1,492 @@
+﻿/* General Styling */
+body {
+    background-color: #f9f9f9;
+}
+
+.card {
+    border-radius: 10px;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.btn-outline-danger:hover {
+    background-color: red;
+    color: white;
+}
+
+.custom-btn {
+    background-color: #ADD9E4; /* Culoare personalizată: albastru */
+    color: white; /* Text alb */
+    border: none; /* Fără bordură */
+    padding: 8px 16px; /* Spațiere interioară */
+    border-radius: 5px; /* Colțuri rotunjite */
+    text-decoration: none; /* Elimină sublinierea */
+    display: inline-block; /* Asigură dimensiunea corectă */
+    font-weight: 500; /* Text semi-bold */
+    transition: background-color 0.3s ease; /* Efect de tranziție la hover */
+}
+
+.custom-btn:hover {
+    background-color: #c70039; /* Culoare mai închisă la hover */
+    color: #fff;
+}
+
+/NU STERGEEE/
+.private-icon {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    border-radius: 50%;
+    padding: 5px;
+    /*    background-color: */
+}
+
+.private-icon img {
+    width: 20px;
+    height: 20px;
+}
+
+
+
+
+/ASTA TRB PASTRAT IN REST E OK/
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #212529;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: #e60023;
+    transition: color 0.3s ease-in-out;
+}
+
+    a:hover {
+        color: #cc001d;
+    }
+
+/* Navbar */
+.navbar {
+    background-color: #ffffff;
+    border-bottom: 2px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+    .navbar a.navbar-brand {
+        color: #e60023;
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+
+        .navbar a.navbar-brand:hover {
+            color: #cc001d;
+        }
+
+.navbar-nav .nav-link {
+    color: #212529;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease-in-out;
+}
+
+    .navbar-nav .nav-link:hover {
+        color: #e60023;
+    }
+
+.navbar .account-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+    .navbar .account-info a {
+        color: #212529;
+        font-weight: 500;
+    }
+
+        .navbar .account-info a:hover {
+            color: #e60023;
+        }
+
+/* Search Bar */
+.search-bar-container {
+    display: flex;
+    justify-content: center;
+    margin: 3rem 0;
+}
+
+    .search-bar-container input {
+        padding: 0.5rem;
+        font-size: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 0.5rem;
+        width: 50%;
+        transition: border-color 0.3s ease-in-out;
+    }
+
+        .search-bar-container input:focus {
+            border-color: #e60023;
+            outline: none;
+        }
+
+    .search-bar-container button {
+        margin-left: 1rem;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        background-color: #e60023;
+        color: #ffffff;
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+        .search-bar-container button:hover {
+            background-color: #cc001d;
+        }
+
+/* Cards */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+    padding: 0 2rem;
+}
+
+.card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .card h4 {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        color: #e60023;
+        text-align: center;
+    }
+
+    .card p {
+        margin: 0.5rem 0;
+        font-size: 1rem;
+        color: #555;
+        text-align: center;
+    }
+
+.card-options {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+    .card-options a {
+        text-decoration: none;
+        color: #ffffff;
+        font-weight: bold;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        transition: background-color 0.3s ease-in-out, transform 0.2s;
+    }
+
+        .card-options a.edit {
+            background-color: #e60023;
+        }
+
+            .card-options a.edit:hover {
+                background-color: #cc001d;
+            }
+
+/* Pagination */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 2rem 0;
+}
+
+    .pagination-container a {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        color: #e60023;
+        border: 1px solid #ddd;
+        border-radius: 0.5rem;
+        background-color: #ffffff;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    }
+
+        .pagination-container a:hover {
+            background-color: #e60023;
+            color: #ffffff;
+        }
+
+    .pagination-container .active {
+        background-color: #e60023;
+        color: #ffffff;
+        border-color: #e60023;
+    }
+
+/* Footer */
+footer {
+    background-color: #ffffff;
+    border-top: 2px solid #ddd;
+    text-align: center;
+    padding: 1.5rem 0;
+    font-size: 0.9rem;
+    color: #767676;
+}
+
+    footer a {
+        color: #e60023;
+        text-decoration: none;
+        transition: color 0.3s ease-in-out;
+    }
+
+        footer a:hover {
+            color: #cc001d;
+            text-decoration: underline;
+        }
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .navbar-nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .account-info {
+        justify-content: center;
+    }
+
+    .search-bar-container input {
+        width: 80%;
+    }
+
+    .cards-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .card-options {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .pagination-container {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+}
+.alert-info {
+    background-color: #e9f7ff; /* Albastru deschis */
+    border: none;
+    color: #333;
+}
+
+.text-primary {
+    color: #007bff !important;
+}
+
+.text-danger {
+    color: #dc3545 !important;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    transition: all 0.3s ease;
+}
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+    }
+
+
+.card {
+    border-radius: 10px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+.article-details {
+    margin-bottom: 15px;
+}
+
+    .article-details span {
+        font-size: 14px;
+        color: #555;
+    }
+
+    .article-details .fw-bold {
+        font-size: 16px;
+        color: #333;
+    }
+/* Stilizare pentru cardurile atributelor */
+.card-body .bg-primary {
+    background-color: #007bff !important; /* Albastru Bootstrap */
+    border: 2px solid #0056b3; /* Bordură albastru închis */
+}
+
+.card-body .p-3 {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Umbră subtilă */
+    transition: transform 0.2s ease-in-out;
+}
+
+    .card-body .p-3:hover {
+        transform: translateY(-5px); /* Efect de hover: ridicare */
+    }
+
+.card-title {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Stilizare pentru cardul principal */
+.card-body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card-title {
+    font-size: 1.75rem;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Casete pentru atribute */
+.attribute-box {
+    background-color: #f8f9fa; /* Gri deschis */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px 15px;
+    text-align: center;
+    width: 150px; /* Dimensiune fixă mai mică */
+    transition: all 0.3s ease-in-out;
+}
+
+    .attribute-box:hover {
+        background-color: #e2e6ea; /* Gri mai închis la hover */
+        transform: translateY(-3px); /* Efect de hover */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .attribute-box i {
+        font-size: 1.5rem;
+        color: #007bff; /* Albastru */
+    }
+
+.attribute-title {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.attribute-content {
+    font-size: 0.85rem;
+    color: #555;
+    margin-top: 5px;
+}
+/* Clasa pentru iconița private */
+.private-icon {
+    position: absolute; /* Poziționare absolută față de elementul părinte */
+    right: 10px; /* Poziționare la 10px față de marginea dreaptă */
+    bottom: 10px; /* Poziționare la 10px față de marginea de jos */
+    border-radius: 50%; /* Colțuri rotunjite */
+    padding: 5px; /* Spațiere interioară */
+}
+
+    /* Stilizare pentru imaginea din interiorul iconiței */
+    .private-icon img {
+        width: 20px; /* Dimensiunea iconiței */
+        height: 20px;
+    }
+
+/* Stilizare pentru cardul principal */
+.card-body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card-title {
+    font-size: 1.75rem;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Casete pentru atribute */
+.attribute-box {
+    background-color: #f8f9fa; /* Gri deschis */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px 15px;
+    text-align: center;
+    width: 150px; /* Dimensiune fixă mai mică */
+    transition: all 0.3s ease-in-out;
+}
+
+    .attribute-box:hover {
+        background-color: #e2e6ea; /* Gri mai închis la hover */
+        transform: translateY(-3px); /* Efect de hover */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .attribute-box i {
+        font-size: 1.5rem;
+        color: #007bff; /* Albastru */
+    }
+
+.attribute-title {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.attribute-content {
+    font-size: 0.85rem;
+    color: #555;
+    margin-top: 5px;
+}
+
+.attribute-box {
+    display: inline-block; /* Lățime în funcție de conținut */
+    white-space: nowrap; /* Evită împărțirea textului pe mai multe linii */
+    padding: 8px 12px; /* Spațiere interioară */
+    border: 1px solid #ddd; /* Adaugă o bordură pentru vizibilitate */
+    border-radius: 5px; /* Colțuri rotunjite */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Umbra existentă */
+    background-color: #f9f9f9; /* Fundal opțional */
+}
+
+    .attribute-box .attribute-content {
+        display: inline; /* Asigură că textul este pe o singură linie */
+        font-weight: bold; /* Poți ajusta stilul textului */
+    }

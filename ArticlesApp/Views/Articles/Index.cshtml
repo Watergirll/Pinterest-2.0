@@ -1,0 +1,83 @@
+﻿<br />
+<h2 class="text-center">Afisare articole</h2>
+
+<br />
+
+
+
+<br />
+@* Buton pentru adaugarea unui nou articol *@
+<div class="text-center mb-4">
+    <a asp-controller="Articles" asp-action="New" class="btn btn-primary">
+        <i class="bi bi-plus-circle"></i> Adaugă articol
+    </a>
+</div>
+
+
+@* Motorul de cautare *@
+<form method="GET">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Search topics or keywords" name="search"
+               value="@ViewBag.SearchString">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </div>
+</form>
+
+<form method="get" action="/Articles/Index">
+    <div class="form-group">
+        <label>Sort by:</label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="sortOrder" id="sortByDate" value="date" @(ViewBag.SortOrder == "date" || ViewBag.SortOrder == null ? "checked" : "")>
+            <label class="form-check-label" for="sortByDate">
+                Date
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="sortOrder" id="sortByLikes" value="likes" @(ViewBag.SortOrder == "likes" ? "checked" : "")>
+            <label class="form-check-label" for="sortByLikes">
+                Likes
+            </label>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Sort</button>
+</form>
+
+<br /> <!-- Added space here -->
+@foreach (var article in ViewBag.Articles)
+{
+    <div class="card">
+
+        <partial name="ArticleInfo" model="article"></partial>
+
+        <a class="btn custom-btn" asp-controller="Articles" asp-action="Show" asp-route-id="@article.Id">Afisare articol</a>
+
+    </div>
+
+    <br />
+    <br />
+}
+
+@* Afisarea paginata a articolelor *@
+
+<div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="@ViewBag.PaginationBaseUrl=1" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+
+            @for (int i = 1; i <= ViewBag.lastPage; i++)
+            {
+                <li class="page-item"> <a class="page-link" href="@ViewBag.PaginationBaseUrl=@i">@(i)</a> </li>
+            }
+
+            <li class="page-item">
+                <a class="page-link" href="@ViewBag.PaginationBaseUrl=@(ViewBag.lastPage)" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
