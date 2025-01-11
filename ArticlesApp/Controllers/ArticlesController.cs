@@ -115,14 +115,16 @@ namespace Pinterest.Controllers
             ViewBag.lastPage = Math.Ceiling((float)totalItems / (float)_perPage);
             ViewBag.Articles = paginatedArticles;
 
+
             if (search != "")
             {
-                ViewBag.PaginationBaseUrl = "/Articles/Index/?search=" + search + "&page";
+                 ViewBag.PaginationBaseUrl = "/Articles/Index/?search=" + search + "&sortOrder=" + sortOrder + "&page";
             }
             else
             {
-                ViewBag.PaginationBaseUrl = "/Articles/Index/?page";
+                 ViewBag.PaginationBaseUrl = "/Articles/Index/?sortOrder=" + sortOrder + "&page";
             }
+
 
             ViewBag.SortOrder = sortOrder;
 

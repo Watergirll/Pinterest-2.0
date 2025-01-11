@@ -44,11 +44,18 @@ namespace Pinterest.Controllers
         public async Task<ActionResult> Show(string id)
         {
             ApplicationUser user = db.Users.Find(id);
-            var roles = await _userManager.GetRolesAsync(user);    
+            var roles = await _userManager.GetRolesAsync(user);
 
             ViewBag.Roles = roles;
 
             ViewBag.UserCurent = await _userManager.GetUserAsync(User);
+
+            // Get public bookmarks of the user
+            var publicBookmarks = db.Bookmarks
+                                    .Where(b => b.UserId == id && b.IsPublic)
+                                    .ToList();
+
+            ViewBag.PublicBookmarks = publicBookmarks;
 
             return View(user);
         }

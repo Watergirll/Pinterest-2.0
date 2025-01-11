@@ -26,12 +26,12 @@
                     
                     <h5 class="card-title" name="Name">@bookmark.Name</h5>
 
-                        @if (ViewBag.EsteAdmin)
+                        @if (ViewBag.EsteAdmin && bookmark.IsPublic)
                         {
                             <div><i class="bi bi-person"> Creat de: </i> @bookmark.User.UserName</div>
                         }
 
-                        @if (!bookmark.IsPublic)
+                        @if (!bookmark.IsPublic )
                         {
                             <div class="private-icon">
                                 <img src="~/images/private-favi.png" alt="Private" />

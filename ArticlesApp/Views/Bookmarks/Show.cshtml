@@ -18,6 +18,15 @@
         Articole in colectie:
         <br /><br />
 
+        @if (ViewBag.AfisareButoane)
+        {
+            <a asp-controller="Bookmarks" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Editare</a>
+            <form method="post" asp-controller="Bookmarks" asp-action="Delete" asp-route-id="@Model.Id">
+
+                <button class="btn btn-danger" type="submit">Sterge colectia</button>
+
+            </form>
+        }
         
     </div>
     <br />

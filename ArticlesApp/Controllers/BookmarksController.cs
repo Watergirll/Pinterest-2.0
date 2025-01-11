@@ -47,32 +47,28 @@ namespace Pinterest.Controllers
 
             var currentUserId = _userManager.GetUserId(User);
 
-            if (User.IsInRole("User") || User.IsInRole("Editor"))
+            List<Bookmark> bookmarks;
+
+            if (User.IsInRole("Admin"))
             {
-                var bookmarks = db.Bookmarks
-                                  .Include("User")
-                                  .Where(b => b.UserId == currentUserId || b.IsPublic)
-                                  .ToList();
-
-                ViewBag.Bookmarks = bookmarks;
-
-                return View();
-            }
-            else if (User.IsInRole("Admin"))
-            {
-                var bookmarks = db.Bookmarks.Include("User").ToList();
-
-                ViewBag.Bookmarks = bookmarks;
-
-                return View();
+                bookmarks = db.Bookmarks
+                              .Include("User")
+                              .Where(b => b.UserId == currentUserId || b.IsPublic)
+                              .ToList();
             }
             else
             {
-                TempData["message"] = "Nu aveti drepturi asupra colectiei";
-                TempData["messageType"] = "alert-danger";
-                return RedirectToAction("Index", "Articles");
+                bookmarks = db.Bookmarks
+                              .Include("User")
+                              .Where(b => b.UserId == currentUserId)
+                              .ToList();
             }
+
+            ViewBag.Bookmarks = bookmarks;
+
+            return View();
         }
+
 
         // Afisarea tuturor articolelor pe care utilizatorul le-a salvat in 
         // bookmark-ul sau 
@@ -152,14 +148,142 @@ namespace Pinterest.Controllers
         {
             ViewBag.AfisareButoane = false;
 
-            if (User.IsInRole("Editor") || User.IsInRole("User"))
+            var currentUserId = _userManager.GetUserId(User);
+            var bookmarkUserId = db.Bookmarks.FirstOrDefault()?.UserId;
+
+            if (User.IsInRole("Admin") || currentUserId == bookmarkUserId)
             {
                 ViewBag.AfisareButoane = true;
             }
 
             ViewBag.EsteAdmin = User.IsInRole("Admin");
-
-            ViewBag.UserCurent = _userManager.GetUserId(User);
+            ViewBag.UserCurent = currentUserId;
         }
+
+        [Authorize(Roles = "User,Editor,Admin")]
+        public IActionResult Edit(int id)
+        {
+            var bookmark = db.Bookmarks.FirstOrDefault(b => b.Id == id);
+
+            if (bookmark == null)
+            {
+                TempData["message"] = "Resursa cautata nu poate fi gasita";
+                TempData["messageType"] = "alert-danger";
+                return RedirectToAction("Index");
+            }
+
+            var currentUserId = _userManager.GetUserId(User);
+
+            if (bookmark.UserId == currentUserId || User.IsInRole("Admin"))
+            {
+                return View(bookmark);
+            }
+            else
+            {
+                TempData["message"] = "Nu aveti drepturi";
+                TempData["messageType"] = "alert-danger";
+                return RedirectToAction("Index");
+            }
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "User,Editor,Admin")]
+        public IActionResult Edit(int id, Bookmark updatedBookmark)
+        {
+            var bookmark = db.Bookmarks.FirstOrDefault(b => b.Id == id);
+
+            if (bookmark == null)
+            {
+                TempData["message"] = "Resursa cautata nu poate fi gasita";
+                TempData["messageType"] = "alert-danger";
+                return RedirectToAction("Index");
+            }
+
+            var currentUserId = _userManager.GetUserId(User);
+
+            if (bookmark.UserId == currentUserId || User.IsInRole("Admin"))
+            {
+                if (ModelState.IsValid)
+                {
+                    bookmark.Name = updatedBookmark.Name;
+                    bookmark.IsPublic = updatedBookmark.IsPublic;
+                    db.SaveChanges();
+
+                    TempData["message"] = "Colectia a fost actualizata";
+                    TempData["messageType"] = "alert-success";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View(updatedBookmark);
+                }
+            }
+            else
+            {
+                TempData["message"] = "Nu aveti drepturi";
+                TempData["messageType"] = "alert-danger";
+                return RedirectToAction("Index");
+            }
+        }
+
+        [Authorize(Roles = "User,Editor,Admin")]
+        public IActionResult Delete(int id)
+        {
+            var bookmark = db.Bookmarks.FirstOrDefault(b => b.Id == id);
+
+            if (bookmark == null)
+            {
+                TempData["message"] = "Resursa cautata nu poate fi gasita";
+                TempData["messageType"] = "alert-danger";
+                return RedirectToAction("Index");
+            }
+
+            var currentUserId = _userManager.GetUserId(User);
+
+            if (bookmark.UserId == currentUserId || User.IsInRole("Admin"))
+            {
+                return View(bookmark);
+            }
+            else
+            {
+                TempData["message"] = "Nu aveti drepturi";
+                TempData["messageType"] = "alert-danger";
+                return RedirectToAction("Index");
+            }
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "User,Editor,Admin")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var bookmark = db.Bookmarks.FirstOrDefault(b => b.Id == id);
+
+            if (bookmark == null)
+            {
+                TempData["message"] = "Resursa cautata nu poate fi gasita";
+                TempData["messageType"] = "alert-danger";
+                return RedirectToAction("Index");
+            }
+
+            var currentUserId = _userManager.GetUserId(User);
+
+            if (bookmark.UserId == currentUserId || User.IsInRole("Admin"))
+            {
+                db.Bookmarks.Remove(bookmark);
+                db.SaveChanges();
+
+                TempData["message"] = "Colectia a fost stearsa";
+                TempData["messageType"] = "alert-success";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                TempData["message"] = "Nu aveti drepturi";
+                TempData["messageType"] = "alert-danger";
+                return RedirectToAction("Index");
+            }
+        }
+
+
     }
 }

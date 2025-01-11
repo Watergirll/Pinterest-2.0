@@ -20,11 +20,13 @@
         </div>
 
         <!-- Autor -->
-        <div class="attribute-box shadow-sm">
-            <i class="bi bi-person mb-2 d-block"></i>
-            <div class="attribute-title">Autor</div>
-            <div class="attribute-content">@Html.DisplayFor(model => model.User.UserName)</div>
-        </div>
+        <a class="text-decoration-none" asp-controller="Users" asp-action="Show" asp-route-id="@Model.User.Id">
+            <div class="attribute-box shadow-sm">
+                <i class="bi bi-person mb-2 d-block"></i>
+                <div class="attribute-title">Autor</div>
+                <div class="attribute-content">@Html.DisplayFor(model => model.User.UserName)</div>
+            </div>
+        </a>
 
 
         <!-- Dată -->

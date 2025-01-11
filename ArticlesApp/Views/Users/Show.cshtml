@@ -16,7 +16,28 @@
                     <span class="rounded-pill bg-dark mr-2 px-4 py-2 text-white">@role</span>
                 }
             }
+
+            <!-- Display Public Bookmarks -->
+            @if (ViewBag.PublicBookmarks != null && ViewBag.PublicBookmarks.Count > 0)
+            {
+                <p><i class="bi bi-bookmark"></i> Public Bookmarks:</p>
+                <ul>
+                    @foreach (var bookmark in ViewBag.PublicBookmarks)
+                    {
+                        <li>@bookmark.Name</li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p>No public bookmarks available.</p>
+            }
+
         </div>
+
+
+
+
 
         
 
