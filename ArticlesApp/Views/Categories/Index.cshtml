@@ -13,20 +13,30 @@
 
 <br />
 
-@foreach (Pinterest.Models.Category category in ViewBag.Categories)
-{
-    <div class="form-group">
-        <label asp-for="@category.CategoryName" class="form-label">Denumire categorie</label>
-        <div><i class="bi bi-globe"></i> @category.CategoryName</div>
-    </div>
-    <br />
-    <a class="btn alert-success" asp-controller="Categories" asp-action="Show" asp-route-id="@category.Id">Afisare categorie</a>
-    <a class="btn alert-success" asp-controller="Categories" asp-action="Edit" asp-route-id="@category.Id">Editare categorie</a>
-    <br />
-    <br />
 
-}
-<br />
-<a class="btn btn-success" asp-controller="Categories" asp-action="New">Adauga o noua categorie</a>
-<br />
+<div class="row">
+    @foreach (Pinterest.Models.Category category in ViewBag.Categories)
+    {
+        <div class="col-4 mb-4">
+            <div class="card" style="height: 100%; width: 100%;">
+                <div class="card-body d-flex justify-content-between flex-column">
+                    <div>
+                        <p><i class="bi bi-folder"></i> <strong>Denumire categorie:</strong> @category.CategoryName</p>
+                    </div>
+                    <div class="d-flex flex-row justify-content-between p-3">
+                        <div>
+                            <a asp-controller="Categories" asp-action="Show" asp-route-id="@category.Id" class="btn btn-sm btn-primary">Afisare categorie</a>
+                        </div>
+                        <div>
+                            <a asp-controller="Categories" asp-action="Edit" asp-route-id="@category.Id" class="btn btn-sm btn-warning">Editare categorie</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
 
+<div class="mt-4">
+    <a asp-controller="Categories" asp-action="New" class="btn btn-lg btn-success">Adauga o noua categorie</a>
+</div>
