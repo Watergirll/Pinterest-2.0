@@ -348,7 +348,7 @@ namespace Pinterest.Controllers
 
                     article.Date = DateTime.Now;
                     article.CategoryId = requestArticle.CategoryId;
-                    article.UserId = requestArticle.UserId; // Update the author of the article
+                    //article.UserId = requestArticle.UserId; // Update the author of the article
                     TempData["message"] = "Articolul a fost modificat";
                     TempData["messageType"] = "alert-success";
                     db.SaveChanges();
