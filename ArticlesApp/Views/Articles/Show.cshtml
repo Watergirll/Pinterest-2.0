@@ -136,7 +136,6 @@
 }
 
 @* Afisarea formularului in care se poate adauga un comentariu *@
-
 <div class="container">
 
     <div class="row">
@@ -156,7 +155,7 @@
                         <label>Continut comentariu</label>
                         <br />
 
-                        <textarea class="form-control" name="Content"></textarea>
+                        <textarea class="form-control" name="Content" required></textarea>
 
                         <span asp-validation-for="Content" class="text-danger"></span>
                         <br /><br />
@@ -166,6 +165,13 @@
                     </div>
 
                 </form>
+
+                @if (ViewBag.ErrorMessage != null)
+                {
+                    <div class="text-danger text-center mt-3">
+                        @ViewBag.ErrorMessage
+                    </div>
+                }
 
             </div>
 

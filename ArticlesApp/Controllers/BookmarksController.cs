@@ -149,7 +149,7 @@ namespace Pinterest.Controllers
             ViewBag.AfisareButoane = false;
 
             var currentUserId = _userManager.GetUserId(User);
-            var bookmarkUserId = db.Bookmarks.FirstOrDefault()?.UserId;
+            var bookmarkUserId = db.Bookmarks.FirstOrDefault(b => b.UserId == currentUserId)?.UserId;
 
             if (User.IsInRole("Admin") || currentUserId == bookmarkUserId)
             {

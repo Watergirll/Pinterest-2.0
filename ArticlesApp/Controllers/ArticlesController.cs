@@ -115,7 +115,7 @@ namespace Pinterest.Controllers
             ViewBag.lastPage = Math.Ceiling((float)totalItems / (float)_perPage);
             ViewBag.Articles = paginatedArticles;
 
-
+            // asa se pastreaza sortarea si search-ul in paginatie
             if (search != "")
             {
                  ViewBag.PaginationBaseUrl = "/Articles/Index/?search=" + search + "&sortOrder=" + sortOrder + "&page";
@@ -374,7 +374,7 @@ namespace Pinterest.Controllers
         // Adminii pot sterge orice articol de baza de date
 
         [HttpPost]
-        [Authorize(Roles = "Editor,Admin")]
+        [Authorize(Roles = "User,Editor,Admin")]
         public ActionResult Delete(int id)
         {
             // Article article = db.Articles.Find(id);

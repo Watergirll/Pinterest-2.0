@@ -21,6 +21,7 @@ namespace Pinterest.Models
         // o colectie poate fi privata sau publica
         [Required(ErrorMessage = "Public/Private status is required")]
         public bool IsPublic { get; set; }
-        public bool IsPrivate => !IsPublic;
+
+        //public bool IsPrivate => !IsPublic;
     }
 }

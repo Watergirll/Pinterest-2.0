@@ -23,6 +23,10 @@ namespace Pinterest.Controllers
             _userManager = userManager;
             _roleManager = roleManager;
         }
+
+        //metoda new nu este implementata aici pentru ca aceasta functionalitate se gaseste direct pe pagina show a articolului
+        //fiind deci implementata in metoda show a articolului
+
         /*
         
         // Adaugarea unui comentariu asociat unui articol in baza de date
